@@ -4,13 +4,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "curso")
@@ -33,12 +29,11 @@ public class Curso {
 	}
 	
 // novo construtor
-	public Curso(Integer codigo, String nome, Set<Aluno> aluno, Set<Disciplina> disciplina) {
+	public Curso(Integer codigo, String nome) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
-		this.aluno = aluno;
-		this.disciplina = disciplina;
+		
 	}
 
 
