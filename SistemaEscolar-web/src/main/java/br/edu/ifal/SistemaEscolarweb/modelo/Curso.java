@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,22 +22,25 @@ public class Curso {
 	@Column(length = 50, nullable = false, name = "nome")
 	private String nome;
 	
-	@OneToMany
+	@ManyToMany
 	private Set<Aluno> aluno;
 	
-	@OneToMany
+	@ManyToMany
 	private Set<Disciplina> disciplina;
 	
 	public Curso() {
-		// TODO Auto-generated constructor stub
+		
 	}
-
-	public Curso(Integer codigo, String nome) {
+	
+// novo construtor
+	public Curso(Integer codigo, String nome, Set<Aluno> aluno, Set<Disciplina> disciplina) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
-	
+		this.aluno = aluno;
+		this.disciplina = disciplina;
 	}
+
 
 	public String getNome() {
 		return nome;
