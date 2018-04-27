@@ -28,12 +28,22 @@ public class Escola {
 	@OneToMany
 	private Set<Professor> professores;
 
+	public Escola() {
+		super();
+	}
+
 	public Escola(Integer codigo, String nome, Set<Curso> cursos, Set<Professor> professores) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.cursos = cursos;
 		this.professores = professores;
+	}
+
+	public Escola(Integer codigo, String nome) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
 	}
 
 	public Integer getCodigo() {
