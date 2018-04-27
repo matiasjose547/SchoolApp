@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -31,18 +32,17 @@ public class Aluno extends Pessoa{
 	@Column(length = 200, nullable = true, name = "nome_mae")
 	private String nomeMae;
 	
-	@Enumerated(EnumType.STRING)
-	private TipoAluno tipoAluno;
-	
-	public enum TipoAluno {
-		BOLSISTA_ASSISTENCIA,
-		BOLSITA_PESQUISA,
-		BOLSITA_EXTENSAO,
-		SEM_BOLSA,
-	}
+//Exclui o método Enum
+// Lista de cursos ---- Relacionamento m & n
+	@ManyToMany
+	private Set<Curso> cursos;	
 	
 	@ManyToMany
 	private Set<Disciplina> disciplinas;
+	
+	//Atributo boletim
+	@OneToOne
+	private Boletim boletim;
 	
 	@Override
 	public int hashCode() {
@@ -139,14 +139,6 @@ public class Aluno extends Pessoa{
 		if (d != null) {
 			this.disciplinas.remove(d);
 		}
-	}
-
-	public TipoAluno getTipoAluno() {
-		return tipoAluno;
-	}
-
-	public void setTipoAluno(TipoAluno tipoAluno) {
-		this.tipoAluno = tipoAluno;
 	}
 
 }
