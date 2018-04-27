@@ -16,17 +16,20 @@ public class Disciplina {
 	@Id
 	@Column(length = 200, nullable = true)
 	private String nome;
-
-	@OneToMany
-	private  Set<Professor> professor;
+	//Alteração para de OneToMany para ManyToMany
+	@ManyToMany
+	private Set<Professor> professor;
 
 	@ManyToMany
 	private Set<Aluno> alunos;
-	
+
 	@OneToMany
 	private Set<Assunto> assunto;
 
-	
+	// Lista de curso ---- relacionamento n & m
+	@ManyToMany
+	private Set<Curso> cursos;
+
 	public Disciplina() {
 		super();
 	}
@@ -38,8 +41,6 @@ public class Disciplina {
 		this.alunos = alunos;
 		this.assunto = assunto;
 	}
-	
-	
 
 	@Override
 	public int hashCode() {
@@ -96,7 +97,7 @@ public class Disciplina {
 		return professor;
 	}
 
-	public void professor (Set<Professor> professor) {
+	public void professor(Set<Professor> professor) {
 		this.professor = professor;
 	}
 
@@ -117,7 +118,6 @@ public class Disciplina {
 	public void removeAluno(Aluno aluno) {
 		this.alunos.remove(aluno);
 	}
-	
 
 	public void addProfessor(Professor professor) {
 		if (professor != null) {
