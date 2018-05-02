@@ -15,38 +15,36 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.ProfessorRepository;
 
 @RestController
 @RequestMapping("/professor")
-public class ProfessorResources {
+public class ProfessorResource {
 
 	@Autowired
 	ProfessorRepository professorRepository;
-	
-	
+
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {
-		Professor p = new Professor("Edvaldo","123456789",4,"ING");
+		Professor p = new Professor("Edvaldo", "123456789", 4, "ING");
 		professorRepository.save(p);
 		return "Parabéns";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces="application/json")
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Professor buscar(@PathVariable("id") Integer id) {
 		return professorRepository.getOne(id);
 	}
-	
-	@RequestMapping(value = "/{id}/deletar", method = RequestMethod.GET, produces="application/json")
+
+	@RequestMapping(value = "/{id}/deletar", method = RequestMethod.GET, produces = "application/json")
 	public String deletar(@PathVariable("id") Integer id) {
 		professorRepository.deleteById(id);
 		return "Professor deletado";
-	
+
 	}
-	
+
 	@RequestMapping(value = "/pesquisar", method = RequestMethod.GET)
-	public List<Professor> listarEscola(@RequestParam(name = "nome", defaultValue = "ALL")String nome){
+	public List<Professor> listarEscola(@RequestParam(name = "nome", defaultValue = "ALL") String nome) {
 		List<Professor> lista = new ArrayList<>();
 		lista = professorRepository.findAll();
 		return lista;
-	 
+
 	}
 
-	
 }

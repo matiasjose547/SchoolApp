@@ -15,7 +15,7 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.CursoRepository;
 
 @RestController
 @RequestMapping("/curso")
-public class CursoResouces {
+public class CursoResouce {
 
 	@Autowired
 	CursoRepository cursoRepository;

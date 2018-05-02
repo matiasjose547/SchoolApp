@@ -4,8 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -16,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "aluno")
-public class Aluno extends Pessoa{
+public class Aluno extends Pessoa {
 
 	@Id
 	@GeneratedValue(generator = "inc")
@@ -31,19 +29,19 @@ public class Aluno extends Pessoa{
 
 	@Column(length = 200, nullable = true, name = "nome_mae")
 	private String nomeMae;
-	
-//Exclui o método Enum
-// Lista de cursos ---- Relacionamento m & n
+
+	// Exclui o método Enum
+	// Lista de cursos ---- Relacionamento m & n
 	@ManyToMany
-	private Set<Curso> cursos;	
-	
+	private Set<Curso> cursos;
+
 	@ManyToMany
 	private Set<Disciplina> disciplinas;
-	
-	//Atributo boletim
+
+	// Atributo boletim
 	@OneToOne
 	private Boletim boletim;
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -51,7 +49,6 @@ public class Aluno extends Pessoa{
 		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -72,12 +69,10 @@ public class Aluno extends Pessoa{
 
 	public Aluno(String nome, String cpf) {
 		super();
-		this.matricula = matricula;
 	}
 
-	
 	public Aluno(Integer matricula, String nome, String cpf) {
-		super();
+		super(nome, cpf);
 		this.matricula = matricula;
 	}
 

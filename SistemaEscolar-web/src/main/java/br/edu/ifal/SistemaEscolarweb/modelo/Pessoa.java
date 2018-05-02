@@ -15,6 +15,7 @@ public abstract class Pessoa {
 	@Column(length = 11, nullable = false, name = "cpf")
 	private String cpf;
 	
+	
 
 	public Pessoa() {
 		super();
