@@ -23,21 +23,21 @@ public class Professor extends Pessoa {
 	private Set<Disciplina> disciplinas;
 	// Exclui o método enum e seus atributos
 
-	public Professor() {
-		super();
-	}
 	
+	
+	public Professor() {
+		
+	}
+
 	// Adicionado novo construtor
-public Professor(Integer numeroCadastro, String formacao, Set<Disciplina> disciplinas) {
-		super();
+	public Professor(String nome, String cpf, Integer numeroCadastro, String formacao) {
+		super(nome, cpf);
 		this.numeroCadastro = numeroCadastro;
 		this.formacao = formacao;
-		this.disciplinas = disciplinas;
 	}
 
+	// aDicionados getters e setters de disciplinas
 
-// aDicionados getters e setters de disciplinas
-	
 	public Set<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}

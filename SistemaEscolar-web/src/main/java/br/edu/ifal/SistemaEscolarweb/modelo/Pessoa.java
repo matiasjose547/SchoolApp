@@ -14,6 +14,17 @@ public abstract class Pessoa {
 
 	@Column(length = 11, nullable = false, name = "cpf")
 	private String cpf;
+	
+
+	public Pessoa() {
+		super();
+	}
+
+	public Pessoa(String nome, String cpf) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+	}
 
 	public String getNome() {
 		return nome;

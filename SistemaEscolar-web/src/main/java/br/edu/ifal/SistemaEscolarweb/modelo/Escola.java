@@ -39,6 +39,11 @@ public class Escola {
 		this.cursos = cursos;
 		this.professores = professores;
 	}
+	
+	public Escola(String nome) {
+		super();
+		this.nome = nome;
+	}
 
 	public Escola(Integer codigo, String nome) {
 		super();
