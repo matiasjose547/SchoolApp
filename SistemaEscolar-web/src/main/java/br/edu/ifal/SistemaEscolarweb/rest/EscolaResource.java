@@ -23,7 +23,7 @@ public class EscolaResource {
 	}
 
 	@RequestMapping(value = "buscar", method = RequestMethod.GET)
-	public Escola buscar(@PathVariable("9") Integer id) {
+	public Escola buscar(@PathVariable("id") Integerid) {
 		return escolaRepository.getOne(id);
 	}
 	
