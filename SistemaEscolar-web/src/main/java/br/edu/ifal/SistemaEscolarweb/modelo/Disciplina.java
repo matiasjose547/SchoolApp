@@ -4,16 +4,24 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "disciplina")
 public class Disciplina {
 
 	@Id
+	@GeneratedValue(generator = "inc")
+	@GenericGenerator(name = "inc", strategy = "increment")
+	private Integer id;
+	
+	
 	@Column(length = 200, nullable = true)
 	private String nome;
 	//Alteração para de OneToMany para ManyToMany
@@ -83,6 +91,36 @@ public class Disciplina {
 		} else if (!professor.equals(other.professor))
 			return false;
 		return true;
+	}
+	
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Set<Assunto> getAssunto() {
+		return assunto;
+	}
+
+	public void setAssunto(Set<Assunto> assunto) {
+		this.assunto = assunto;
+	}
+
+	public Set<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(Set<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public void setProfessor(Set<Professor> professor) {
+		this.professor = professor;
 	}
 
 	public String getNome() {

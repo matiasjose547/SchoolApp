@@ -10,39 +10,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ifal.SistemaEscolarweb.modelo.Professor;
-import br.edu.ifal.SistemaEscolarweb.repositorios.ProfessorRepository;
+import br.edu.ifal.SistemaEscolarweb.modelo.Disciplina;
+import br.edu.ifal.SistemaEscolarweb.repositorios.DisciplinaRepository;
 
 @RestController
-@RequestMapping("/professor")
-public class ProfessorResource {
+@RequestMapping("/disciplina")
+public class DisciplinaResource {
 
 	@Autowired
-	ProfessorRepository professorRepository;
+	DisciplinaRepository disciplinaRepository;
 
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {
-		Professor p = new Professor("Edvaldo", "123456789", 4, "ING");
-		professorRepository.save(p);
+	    Disciplina d = new Disciplina("poo", null, null,null);
+		disciplinaRepository.save(d);
 		return "Parabéns";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public Professor buscar(@PathVariable("id") Integer id) {
-		return professorRepository.getOne(id);
+	public Disciplina buscar(@PathVariable("id") Integer id) {
+		return disciplinaRepository.getOne(id);
 	}
 
 	@RequestMapping(value = "/{id}/deletar", method = RequestMethod.GET, produces = "application/json")
 	public String deletar(@PathVariable("id") Integer id) {
-		professorRepository.deleteById(id);
-		return "Professor deletado";
+	 disciplinaRepository.deleteById(id);
+		return "Disciplina deletada";
 
 	}
 
 	@RequestMapping(value = "/pesquisar", method = RequestMethod.GET)
-	public List<Professor> listarProfessor(@RequestParam(name = "nome", defaultValue = "ALL") String nome) {
-		List<Professor> lista = new ArrayList<>();
-		lista = professorRepository.findAll();
+	public List<Disciplina> listarEscola(@RequestParam(name = "nome", defaultValue = "ALL") String nome) {
+		List<Disciplina> lista = new ArrayList<>();
+		lista = disciplinaRepository.findAll();
 		return lista;
 
 	}
