@@ -16,23 +16,22 @@ public class Assunto {
 	@GeneratedValue(generator = "inc")
 	@GenericGenerator(name = "inc", strategy = "increment")
 	@Column(name = "cod_assunto")
-	private Long id;
+	private Integer id;
 	@Column(length = 80, nullable = false, name = "nome_assunto")
 	private String nome;
 	@Column(length = 200, nullable = false, name = "descricao")
 	private String descricao;
 
-	public Assunto(Long id, String nome, String descricao) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-	}
-
 	public Assunto() {
 		super();
 	}
 	
+	public Assunto(String nome, String descricao) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,11 +69,11 @@ public class Assunto {
 		return true;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
