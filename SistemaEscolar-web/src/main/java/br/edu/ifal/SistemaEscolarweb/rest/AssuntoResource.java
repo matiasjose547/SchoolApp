@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifal.SistemaEscolarweb.modelo.Assunto;
+import br.edu.ifal.SistemaEscolarweb.modelo.Disciplina;
 import br.edu.ifal.SistemaEscolarweb.repositorios.AssuntoRepository;
 
 @RestController
@@ -18,17 +19,17 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.AssuntoRepository;
 public class AssuntoResource {
 
 	@Autowired
-	AssuntoRepository AssuntoRepository;
-
+	AssuntoRepository assuntoRepository;
+	
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {
-	    Assunto a = new assunto("poo", null, null,null);
-		AssuntoRepository.save(a);
+	    Assunto a = new Assunto("Equação","Aulas de matemática");
+		assuntoRepository.save(a);
 		return "Parabéns";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public Disciplina buscar(@PathVariable("id") Integer id) {
+	@RequestMapping(value = "/{id}/buscar", method = RequestMethod.GET, produces = "application/json")
+	public Assunto buscar(@PathVariable("id") Integer id) {
 		return assuntoRepository.getOne(id);
 	}
 
@@ -39,7 +40,7 @@ public class AssuntoResource {
 
 	}
 
-	@RequestMapping(value = "/pesquisar", method = RequestMethod.GET)
+	@RequestMapping(value = "/pesquisar/todos", method = RequestMethod.GET)
 	public List<Assunto> listarEscola(@RequestParam(name = "nome", defaultValue = "ALL") String nome) {
 		List<Assunto> lista = new ArrayList<>();
 		lista = assuntoRepository.findAll();
