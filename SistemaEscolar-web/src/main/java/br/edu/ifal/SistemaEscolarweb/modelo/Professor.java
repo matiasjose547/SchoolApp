@@ -1,5 +1,6 @@
 package br.edu.ifal.SistemaEscolarweb.modelo;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,33 +11,63 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "professor")
-public class Professor extends Pessoa {
+public class Professor {
 
 	@Id
-	@Column(length = 11, nullable = false, name = "cpf")
+	@Column(name = "numero_cadastro", length = 11, nullable = false)
 	private Integer numeroCadastro;
+
+	@Column(name = "nome", length = 200, nullable = false)
+	private String nome;
+
+	@Column(name = "cpf", length = 11, nullable = false)
+	private String cpf;
 
 	@Column(length = 80, nullable = false, name = "formacao")
 	private String formacao;
 
 	@ManyToMany
 	private Set<Disciplina> disciplinas;
-	// Exclui o método enum e seus atributos
 
-	
-	
 	public Professor() {
-		
+
 	}
 
-	// Adicionado novo construtor
 	public Professor(String nome, String cpf, Integer numeroCadastro, String formacao) {
-		super(nome, cpf);
 		this.numeroCadastro = numeroCadastro;
 		this.formacao = formacao;
+		this.nome = nome;
+		this.cpf = cpf;
+		disciplinas = new HashSet<>();
 	}
 
-	// aDicionados getters e setters de disciplinas
+	public Integer getNumeroCadastro() {
+		return numeroCadastro;
+	}
+
+	public void setNumeroCadastro(Integer numeroCadastro) {
+		this.numeroCadastro = numeroCadastro;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		if (nome != null) {
+			this.nome = nome;
+		}
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		if (cpf != null) {
+			this.cpf = cpf;
+		}
+	}
 
 	public Set<Disciplina> getDisciplinas() {
 		return disciplinas;

@@ -1,13 +1,11 @@
 package br.edu.ifal.SistemaEscolarweb.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,33 +19,30 @@ public class Escola {
 	@GeneratedValue(generator = "inc")
 	@GenericGenerator(name = "inc", strategy = "increment")
 	private Integer codigo;
+
 	@Column(length = 200, nullable = false, name = "nome")
 	private String nome;
+
 	@OneToMany
 	private Set<Curso> cursos;
+
 	@OneToMany
 	private Set<Professor> professores;
 
 	public Escola() {
-		super();
+		professores = new HashSet<>();
+		cursos = new HashSet<>();
 	}
 
 	public Escola(Integer codigo, String nome, Set<Curso> cursos, Set<Professor> professores) {
-		super();
-		this.codigo = codigo;
+		professores = new HashSet<>();
+		cursos = new HashSet<>();
 		this.nome = nome;
 		this.cursos = cursos;
 		this.professores = professores;
 	}
-	
-	public Escola(String nome) {
-		super();
-		this.nome = nome;
-	}
 
-	public Escola(Integer codigo, String nome) {
-		super();
-		this.codigo = codigo;
+	public Escola(String nome) {
 		this.nome = nome;
 	}
 

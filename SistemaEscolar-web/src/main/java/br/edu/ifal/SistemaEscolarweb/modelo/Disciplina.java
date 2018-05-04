@@ -1,5 +1,6 @@
 package br.edu.ifal.SistemaEscolarweb.modelo;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -20,34 +21,39 @@ public class Disciplina {
 	@GeneratedValue(generator = "inc")
 	@GenericGenerator(name = "inc", strategy = "increment")
 	private Integer id;
-	
-	
+
 	@Column(length = 200, nullable = true)
 	private String nome;
-	//Alteração para de OneToMany para ManyToMany
+
 	@ManyToMany
-	private Set<Professor> professor;
+	private Set<Professor> professores;
 
 	@ManyToMany
 	private Set<Aluno> alunos;
 
 	@OneToMany
-	private Set<Assunto> assunto;
+	private Set<Assunto> assuntos;
 
-	// Lista de curso ---- relacionamento n & m
 	@ManyToMany
 	private Set<Curso> cursos;
 
 	public Disciplina() {
-		super();
+		this.professores = new HashSet<>();
+		this.alunos = new HashSet<>();
+		this.assuntos = new HashSet<>();
+		this.cursos = new HashSet<>();
+
 	}
 
 	public Disciplina(String nome, Set<Professor> professor, Set<Aluno> alunos, Set<Assunto> assunto) {
-		super();
+		this.professores = new HashSet<>();
+		this.alunos = new HashSet<>();
+		this.assuntos = new HashSet<>();
+		this.cursos = new HashSet<>();
 		this.nome = nome;
-		this.professor = professor;
+		this.professores = professor;
 		this.alunos = alunos;
-		this.assunto = assunto;
+		this.assuntos = assunto;
 	}
 
 	@Override
@@ -55,9 +61,9 @@ public class Disciplina {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((alunos == null) ? 0 : alunos.hashCode());
-		result = prime * result + ((assunto == null) ? 0 : assunto.hashCode());
+		result = prime * result + ((assuntos == null) ? 0 : assuntos.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
+		result = prime * result + ((professores == null) ? 0 : professores.hashCode());
 		return result;
 	}
 
@@ -75,25 +81,23 @@ public class Disciplina {
 				return false;
 		} else if (!alunos.equals(other.alunos))
 			return false;
-		if (assunto == null) {
-			if (other.assunto != null)
+		if (assuntos == null) {
+			if (other.assuntos != null)
 				return false;
-		} else if (!assunto.equals(other.assunto))
+		} else if (!assuntos.equals(other.assuntos))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (professor == null) {
-			if (other.professor != null)
+		if (professores == null) {
+			if (other.professores != null)
 				return false;
-		} else if (!professor.equals(other.professor))
+		} else if (!professores.equals(other.professores))
 			return false;
 		return true;
 	}
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -104,11 +108,11 @@ public class Disciplina {
 	}
 
 	public Set<Assunto> getAssunto() {
-		return assunto;
+		return assuntos;
 	}
 
 	public void setAssunto(Set<Assunto> assunto) {
-		this.assunto = assunto;
+		this.assuntos = assunto;
 	}
 
 	public Set<Curso> getCursos() {
@@ -120,7 +124,7 @@ public class Disciplina {
 	}
 
 	public void setProfessor(Set<Professor> professor) {
-		this.professor = professor;
+		this.professores = professor;
 	}
 
 	public String getNome() {
@@ -132,11 +136,11 @@ public class Disciplina {
 	}
 
 	public Set<Professor> getProfessor() {
-		return professor;
+		return professores;
 	}
 
 	public void professor(Set<Professor> professor) {
-		this.professor = professor;
+		this.professores = professor;
 	}
 
 	public Set<Aluno> getAlunos() {
@@ -159,11 +163,11 @@ public class Disciplina {
 
 	public void addProfessor(Professor professor) {
 		if (professor != null) {
-			this.professor.add(professor);
+			this.professores.add(professor);
 		}
 	}
 
 	public void removeProfessor(Professor professor) {
-		this.professor.remove(professor);
+		this.professores.remove(professor);
 	}
 }

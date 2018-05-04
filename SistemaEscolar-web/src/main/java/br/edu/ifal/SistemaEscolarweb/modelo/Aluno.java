@@ -1,5 +1,6 @@
 package br.edu.ifal.SistemaEscolarweb.modelo;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,12 +15,18 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "aluno")
-public class Aluno extends Pessoa {
+public class Aluno {
 
 	@Id
 	@GeneratedValue(generator = "inc")
 	@GenericGenerator(name = "inc", strategy = "increment")
 	private Integer matricula;
+
+	@Column(name = "nome")
+	private String nome;
+
+	@Column(name = "cpf")
+	private String cpf;
 
 	@Column(length = 8, nullable = false, name = "data_nascimento")
 	private String dataNascimento;
@@ -30,15 +37,12 @@ public class Aluno extends Pessoa {
 	@Column(length = 200, nullable = true, name = "nome_mae")
 	private String nomeMae;
 
-	// Exclui o método Enum
-	// Lista de cursos ---- Relacionamento m & n
 	@ManyToMany
 	private Set<Curso> cursos;
 
 	@ManyToMany
 	private Set<Disciplina> disciplinas;
 
-	// Atributo boletim
 	@OneToOne
 	private Boletim boletim;
 
@@ -67,19 +71,51 @@ public class Aluno extends Pessoa {
 		return true;
 	}
 
-	public Aluno(String nome, String cpf) {
-		super();
+	public Aluno() {
+		boletim = new Boletim();
+		disciplinas = new HashSet<>();
+		cursos = new HashSet<>();
 	}
 
 	public Aluno(Integer matricula, String nome, String cpf) {
-		super(nome, cpf);
 		this.matricula = matricula;
+		this.nome = nome;
+		this.cpf = cpf;
+		boletim = new Boletim();
+		disciplinas = new HashSet<>();
+		cursos = new HashSet<>();
 	}
 
-	public void setMatricula(Integer matricula) {
-		if (matricula != null) {
-			this.matricula = matricula;
-		}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public Set<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(Set<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public Boletim getBoletim() {
+		return boletim;
+	}
+
+	public void setBoletim(Boletim boletim) {
+		this.boletim = boletim;
 	}
 
 	public Integer getMatricula() { // retorna a matricula
