@@ -29,7 +29,7 @@ public class AlunoResource {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Aluno buscar(@PathVariable("id") Integer id) {
-		return alunoRepository.getOne(id);
+		return alunoRepository.getOne(id); 
 	}
 
 	@RequestMapping(value = "/{id}/deletar", method = RequestMethod.GET, produces = "application/json")

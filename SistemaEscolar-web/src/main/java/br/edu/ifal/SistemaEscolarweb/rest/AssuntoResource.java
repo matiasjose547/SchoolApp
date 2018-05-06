@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifal.SistemaEscolarweb.modelo.Assunto;
-import br.edu.ifal.SistemaEscolarweb.modelo.Disciplina;
 import br.edu.ifal.SistemaEscolarweb.repositorios.AssuntoRepository;
 
 @RestController

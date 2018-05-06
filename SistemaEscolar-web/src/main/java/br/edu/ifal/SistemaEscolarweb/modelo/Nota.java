@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -18,13 +17,10 @@ public class Nota {
 	@GenericGenerator(name = "inc", strategy = "increment")
 	private Integer id;
 
-	// Exclui os atributos aluno e disciplina
 	@Column(length = 2, scale = 2, nullable = true, name = "valor")
 	private double valor;
 
-	public Nota(int id, Aluno aluno, Disciplina disciplina, double valor) {
-		super();
-		this.id = id;
+	public Nota(double valor) {
 		this.valor = valor;
 	}
 
@@ -44,5 +40,4 @@ public class Nota {
 		this.valor = valor;
 	}
 
-	// Adicionar o método toString
 }

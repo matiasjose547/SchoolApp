@@ -21,7 +21,8 @@ public class EscolaResource {
 
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {
-		Escola a = new Escola(5, "IFREE-RL");
+		Escola a = new Escola();
+		a.setNome("Claudizete");
 		escolaRepository.save(a);
 		return "Tudo certo";
 	}
