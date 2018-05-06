@@ -22,7 +22,7 @@ public class EscolaResource {
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {
 		Escola a = new Escola();
-		a.setNome("Claudizete");
+		a.setNome("Fernandina");
 		escolaRepository.save(a);
 		return "Tudo certo";
 	}
