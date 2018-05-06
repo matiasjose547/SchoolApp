@@ -45,6 +45,17 @@ public class Aluno {
 
 	@OneToOne
 	private Boletim boletim;
+	
+	public Aluno() {
+		
+	}
+
+	public Aluno(String nome, String cpf, String dataDeNascimento) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.dataNascimento = dataDeNascimento;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -70,22 +81,7 @@ public class Aluno {
 			return false;
 		return true;
 	}
-
-	public Aluno() {
-		boletim = new Boletim();
-		disciplinas = new HashSet<>();
-		cursos = new HashSet<>();
-	}
-
-	public Aluno(Integer matricula, String nome, String cpf) {
-		this.matricula = matricula;
-		this.nome = nome;
-		this.cpf = cpf;
-		boletim = new Boletim();
-		disciplinas = new HashSet<>();
-		cursos = new HashSet<>();
-	}
-
+	
 	public String getNome() {
 		return nome;
 	}

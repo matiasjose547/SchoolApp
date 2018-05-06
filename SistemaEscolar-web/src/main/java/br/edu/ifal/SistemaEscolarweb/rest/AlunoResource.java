@@ -22,7 +22,7 @@ public class AlunoResource {
 
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {
-		Aluno a = new Aluno(1, "Jose", "12345789");
+		Aluno a = new Aluno("Maressa", "12345789","16021992");
 		alunoRepository.save(a);
 		return "Parabéns";
 	}
@@ -38,7 +38,7 @@ public class AlunoResource {
 		return "Aluno deletado";
 	}
 
-	@RequestMapping(value = "/pesquisar", method = RequestMethod.GET)
+	@RequestMapping(value = "/pesquisar/todos", method = RequestMethod.GET)
 	public List<Aluno> listarAluno(@RequestParam(name = "nome", defaultValue = "ALL") String nome) {
 		List<Aluno> lista = new ArrayList<>();
 		lista = alunoRepository.findAll();
