@@ -14,11 +14,11 @@ import br.edu.ifal.SistemaEscolarweb.modelo.Aluno;
 import br.edu.ifal.SistemaEscolarweb.repositorios.AlunoRepository;
 
 @RestController
-@RequestMapping("/aluno")
+@RequestMapping("/api/aluno")
 public class AlunoResource {
 
 	@Autowired
-	AlunoRepository alunoRepository;
+	private	AlunoRepository alunoRepository;
 
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {

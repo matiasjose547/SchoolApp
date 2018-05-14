@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+		
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<title></title>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="row mt-3">
+				<div class="col-lg-8">
+					<div class="card ">
+						<div class="card-header bg-info">
+						    Aluno
+						</div>
+
+						<div class="card-body">
+							<div class="form-group">
+					    		<label th:text="Matricula"></label>
+					        	<input class="form-control" type="number" th:field="${aluno.matricula}" readonly="readonly"/>
+						    </div>
+						    
+						    <div class="form-group">        
+						    	<label th:text="Nome"></label>
+						    	<input class="form-control" type="text" th:field="${aluno.nome}" readonly="readonly"/>
+						    </div>
+						    
+						    <div class="form-group">  
+						          <label th:text="Nascimento"></label>
+						          <input class="form-control" type="date" th:field="${aluno.dataNascimento}" readonly="readonly"/>
+						    </div>
+						    
+						    <div class="form-group">  
+						    	<label th:text="'Fluxo Normal'"></label>
+	  							<input type="checkbox" th:field="${aluno.fluxoNormal}" disabled="disabled"/>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row mt-5">
+				<div class="col-lg-5">
+				
+					<div class="card">
+						<div class="card-header bg-success">
+							Disciplinas do Curso
+						</div>
+						
+						<div class="card-body">
+							<table class="table table-striped table-bordered table-hover" >
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Disciplina</th>
+										<th>Período</th>
+										<th>Ações</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="d: ${disciplinasAll}">
+										<td th:text="${d.id}"></td>
+										<td th:text="${d.nome}"></td>
+										<td th:text="${d.periodo}"></td>
+										<td>
+											<a class="btn btn-primary" href="#" 
+												th:href="@{/aluno/addDisciplina(alunoId=${aluno.id},disciplinaId=${d.id})}" >
+												<span class="glyphicon glyphicon-search">add</span>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+		
+							</table>
+						</div>
+					</div><!-- end card -->
+				</div><!-- end col-5 -->
+				
+				
+				
+				<div class="col-lg-7">
+				
+					<div class="card ">
+						<div class="card-header bg-info">
+							Matriculado
+						</div>
+						
+						<div class="card-body">
+							<table class="table table-striped table-bordered table-hover" >
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Disciplina</th>
+										<th>Período</th>
+										<th>Ações</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="d: ${aluno.disciplinas}">
+										<td th:text="${d.id}"></td>
+										<td th:text="${d.nome}"></td>
+										<td th:text="${d.periodo}"></td>
+										<td>
+											<a class="btn btn-danger" href="#" th:href="@{/aluno/removeDisciplina(alunoId=${aluno.id},disciplinaId=${d.id})}" >
+												<span class="glyphicon glyphicon-search">remover</span>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+		
+							</table>
+						</div>
+					</div><!-- end card -->
+				</div><!-- end col-5 -->
+			</div><!-- end row -->
+		</div>
+	
+	</body>
+</html>

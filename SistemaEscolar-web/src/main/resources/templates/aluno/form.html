@@ -17,19 +17,46 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-					<form action="#" th:action="@{/aluno/new}" th:object="${aluno}" method="post">
+					<form action="#" th:action="@{/aluno/save}" th:object="${aluno}" method="POST">
 					    <div class="form-group">
-					    	<label th:text="Matricula" /></td>
+					    	<label th:text="Matricula"></label>
 					        <input class="form-control" type="number" th:field="*{matricula}" />
 					    </div>
 					    
 					    <div class="form-group">        
-					    	<label th:text="Nome" />
+					    	<label th:text="Nome"></label>
 					    	<input class="form-control" type="text" th:field="*{nome}" />
 					    </div>
+					    
 					    <div class="form-group">  
-					          <label th:text="Idade" />
-					          <input class="form-control" type="number" th:field="*{idade}" />
+					          <label th:text="Nascimento"></label>
+					          <input class="form-control" type="date" th:field="*{dataNascimento}" />
+					    </div>
+					    
+					    <div class="form-group">  
+					    	<label th:text="'Fluxo Normal'"></label>
+  							<input type="checkbox" th:field="*{fluxoNormal}" />
+					    </div>
+					    
+					    <div class="form-check">  
+					    	<ul th:each="bolsa: ${tiposAlunosAll}" class="list-unstyled">
+					    		<li>
+					   
+  									<input type="radio" th:field="*{tipoDeAluno}" th:value="${bolsa}" class="form-check-input"/>
+  									<label th:text="${bolsa.nome}" class="form-check-label"></label>
+  								</li>
+  								
+  							</ul>
+					    </div>
+					    
+					    <div class="form-group">  
+					    	<label th:text="Município"></label>
+  							
+  							<select th:field="*{endereco.cidade}" class="form-control">
+							 	<option th:each="m : ${municipioAll}" th:value="${m}" 
+							          th:text="${m}">
+							    </option>
+							</select>
 					    </div>
 					    
 					    <input type="submit" value="Enviar" class="btn btn-primary"/>
