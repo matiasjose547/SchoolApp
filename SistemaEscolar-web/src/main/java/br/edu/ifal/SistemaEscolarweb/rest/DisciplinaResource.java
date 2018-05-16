@@ -39,7 +39,7 @@ public class DisciplinaResource {
 
 	}
 
-	@RequestMapping(value = "/pesquisar", method = RequestMethod.GET)
+	@RequestMapping(value = "/pesquisar/todos", method = RequestMethod.GET)
 	public List<Disciplina> listarEscola(@RequestParam(name = "nome", defaultValue = "ALL") String nome) {
 		List<Disciplina> lista = new ArrayList<>();
 		lista = disciplinaRepository.findAll();
