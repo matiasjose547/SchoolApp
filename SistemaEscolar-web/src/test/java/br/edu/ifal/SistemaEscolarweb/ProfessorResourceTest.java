@@ -1,4 +1,3 @@
-
 package br.edu.ifal.SistemaEscolarweb;
 
 import static org.junit.Assert.*;
@@ -22,34 +21,42 @@ import br.edu.ifal.SistemaEscolarweb.modelo.Professor;
 import br.edu.ifal.SistemaEscolarweb.repositorios.ProfessorRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ProfessorResourceTest {
-    final String BASE_PATH ="http://localhost:8080/professor";
+  
+	final String BASE_PATH = "http://localhost:8080/professor";
+	
 	@Autowired
 	private ProfessorRepository repositorio;
+	
 	private RestTemplate restTemplate;
-    private ObjectMapper MAPPER = new ObjectMapper();
+    
+	private ObjectMapper MAPPER = new ObjectMapper();
     
     
     @Before
     public void setUp() {
+    	restTemplate = new RestTemplate();
     	repositorio.deleteAll();
     	
     	repositorio.save(new Professor ("jose" ,"000.000.000-00" ,111 ,"Ciencias da computação "));
     	repositorio.save(new Professor ("joão" ,"111.111.111-11" ,222 ,"Física "));
     	repositorio.save(new Professor ("Maria" ,"222.222.222-22" ,333 ,"Matemática "));
     	
-    	restTemplate=new RestTemplate();
+    	
     }
     
     
     @Test
-	public void deveFumcionarAListagemDeTodosOsProfessores() throws JsonParseException, JsonMappingException, IOException {
-    	String resposta = restTemplate.getForObject(BASE_PATH +"/pesquisar", String.class);
+	public void deveFuncionarParaListagemDeTodosOsProfessores() throws JsonParseException,
+	JsonMappingException, IOException {
+    	String resposta = restTemplate.getForObject(BASE_PATH +"/pesquisar/todos", String.class);
     	
-    	List<Professor> professores = MAPPER.readValue(resposta, MAPPER.getTypeFactory().constructCollectionLikeType(List.class , Professor.class));
+    	List<Professor> professores = MAPPER.readValue(resposta, MAPPER.getTypeFactory().
+    			constructCollectionLikeType(List.class , Professor.class));
     	
     	int tamanhoDaListaDeProfessorEsperado = 3;
+    	
     	assertEquals(tamanhoDaListaDeProfessorEsperado, professores.size());
     }
 
