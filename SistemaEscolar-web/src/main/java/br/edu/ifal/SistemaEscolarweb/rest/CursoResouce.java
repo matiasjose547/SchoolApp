@@ -39,7 +39,7 @@ public class CursoResouce {
 
 	}
 
-	@RequestMapping(value = "/pesquisar", method = RequestMethod.GET)
+	@RequestMapping(value = "/pesquisar/todos", method = RequestMethod.GET)
 	public List<Curso> listarEscola(@RequestParam(name = "nome", defaultValue = "ALL") String nome) {
 		List<Curso> lista = new ArrayList<>();
 		lista = cursoRepository.findAll();
