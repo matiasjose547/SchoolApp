@@ -90,4 +90,12 @@ public class Professor {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Professor [numeroCadastro=" + numeroCadastro + ", nome=" + nome + 
+				", cpf=" + cpf + ", formacao="
+				+ formacao + ", disciplinas=" + disciplinas + "]";
+	}
+
+	
 }
