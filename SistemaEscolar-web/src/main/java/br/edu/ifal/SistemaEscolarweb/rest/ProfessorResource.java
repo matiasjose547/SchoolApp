@@ -14,7 +14,7 @@ import br.edu.ifal.SistemaEscolarweb.modelo.Professor;
 import br.edu.ifal.SistemaEscolarweb.repositorios.ProfessorRepository;
 
 @RestController
-@RequestMapping("/professor")
+@RequestMapping("/api/professor")
 public class ProfessorResource {
 
 	@Autowired

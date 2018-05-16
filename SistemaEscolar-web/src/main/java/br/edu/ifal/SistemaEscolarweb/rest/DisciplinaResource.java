@@ -14,7 +14,7 @@ import br.edu.ifal.SistemaEscolarweb.modelo.Disciplina;
 import br.edu.ifal.SistemaEscolarweb.repositorios.DisciplinaRepository;
 
 @RestController
-@RequestMapping("/disciplina")
+@RequestMapping("/api/disciplina")
 public class DisciplinaResource {
 
 	@Autowired

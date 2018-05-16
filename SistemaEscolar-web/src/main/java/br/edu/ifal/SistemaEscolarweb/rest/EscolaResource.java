@@ -14,7 +14,7 @@ import br.edu.ifal.SistemaEscolarweb.modelo.Escola;
 import br.edu.ifal.SistemaEscolarweb.repositorios.EscolaRepository;
 
 @RestController
-@RequestMapping("/escola")
+@RequestMapping("/api/escola")
 public class EscolaResource {
 	@Autowired
 	EscolaRepository escolaRepository;

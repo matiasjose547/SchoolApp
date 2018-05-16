@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifal.SistemaEscolarweb.modelo.Boletim;
 import br.edu.ifal.SistemaEscolarweb.modelo.Nota;
 import br.edu.ifal.SistemaEscolarweb.repositorios.BoletimRepository;
 
+
+@RestController
+@RequestMapping("/api/assunto")
 public class BoletimResource {
 
 	@Autowired

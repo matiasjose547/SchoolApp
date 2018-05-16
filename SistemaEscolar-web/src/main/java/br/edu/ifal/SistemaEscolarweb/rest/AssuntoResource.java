@@ -14,7 +14,7 @@ import br.edu.ifal.SistemaEscolarweb.modelo.Assunto;
 import br.edu.ifal.SistemaEscolarweb.repositorios.AssuntoRepository;
 
 @RestController
-@RequestMapping("/assunto")
+@RequestMapping("/api/assunto")
 public class AssuntoResource {
 
 	@Autowired
