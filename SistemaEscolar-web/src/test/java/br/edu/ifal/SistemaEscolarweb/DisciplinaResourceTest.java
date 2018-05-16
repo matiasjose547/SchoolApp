@@ -1,0 +1,61 @@
+package br.edu.ifal.SistemaEscolarweb;
+
+import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.edu.ifal.SistemaEscolarweb.modelo.Disciplina;
+import br.edu.ifal.SistemaEscolarweb.modelo.Escola;
+import br.edu.ifal.SistemaEscolarweb.repositorios.DisciplinaRepository;
+import br.edu.ifal.SistemaEscolarweb.repositorios.EscolaRepository;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+public class DisciplinaResourceTest {
+
+	final String BASE_PATH = "http://localhost:8080/disciplina";
+
+	@Autowired
+	private DisciplinaRepository repositorio;
+
+	private RestTemplate restTemplate;
+
+	private ObjectMapper MAPPER = new ObjectMapper();
+
+	@Before
+	public void setUp() {
+
+		restTemplate = new RestTemplate();
+		repositorio.deleteAll();
+
+		repositorio.save(new Disciplina("POO", null, null, null));
+		repositorio.save(new Disciplina("TI", null, null, null));
+		repositorio.save(new Disciplina("GQS", null, null, null));
+	}
+
+	@Test
+	public void deveFuncionarParaAListagemDeTodasAsDisciplinas() throws JsonMappingException, IOException {
+		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
+
+		List<Disciplina> disciplinas = MAPPER.readValue(response,
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Escola.class));
+
+		int tamanhoEsperadoDaLista = 3;
+
+		assertEquals(tamanhoEsperadoDaLista, disciplinas.size());
+	}
+
+	
+}
