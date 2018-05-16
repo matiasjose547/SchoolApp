@@ -39,7 +39,7 @@ public class ProfessorResource {
 
 	}
 
-	@RequestMapping(value = "/pesquisar", method = RequestMethod.GET)
+	@RequestMapping(value = "/pesquisar/todos", method = RequestMethod.GET)
 	public List<Professor> listarProfessor(@RequestParam(name = "nome", defaultValue = "ALL") String nome) {
 		List<Professor> lista = new ArrayList<>();
 		lista = professorRepository.findAll();
