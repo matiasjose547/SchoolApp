@@ -24,7 +24,7 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.CursoRepository;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class CursoResourceTest {
 
-	final String BASE_PATH = "http://localhost:8080/curso";
+	final String BASE_PATH = "http://localhost:8080/api/curso";
 
 	@Autowired
 	private CursoRepository repositorio;
@@ -49,7 +49,7 @@ public class CursoResourceTest {
 		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
 
 		List<Curso> cursos = MAPPER.readValue(response,
-				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Escola.class));
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Curso.class));
 
 		int tamanhoEsperadoDaLista = 3;
 

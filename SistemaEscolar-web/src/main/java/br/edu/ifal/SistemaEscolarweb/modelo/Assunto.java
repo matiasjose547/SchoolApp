@@ -17,9 +17,11 @@ public class Assunto {
 	@GenericGenerator(name = "inc", strategy = "increment")
 	@Column(name = "cod_assunto")
 	private Integer id;
-	@Column(length = 80, nullable = false, name = "nome_assunto")
+	//Colocar o not null de volta
+	@Column(length = 80, name = "nome_assunto")
 	private String nome;
-	@Column(length = 200, nullable = false, name = "descricao")
+	//Colocar o not null de volta
+	@Column(length = 200, name = "descricao")
 	private String descricao;
 
 	public Assunto() {

@@ -23,7 +23,7 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.EscolaRepository;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class EscolaResourceTest {
 
-	final String BASE_PATH = "http://localhost:8080/escola";
+	final String BASE_PATH = "http://localhost:8080/api/escola";
 
 	@Autowired
 	private EscolaRepository repositorio;

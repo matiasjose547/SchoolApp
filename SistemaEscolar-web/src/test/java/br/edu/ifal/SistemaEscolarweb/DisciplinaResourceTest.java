@@ -17,15 +17,13 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.edu.ifal.SistemaEscolarweb.modelo.Disciplina;
-import br.edu.ifal.SistemaEscolarweb.modelo.Escola;
 import br.edu.ifal.SistemaEscolarweb.repositorios.DisciplinaRepository;
-import br.edu.ifal.SistemaEscolarweb.repositorios.EscolaRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class DisciplinaResourceTest {
 
-	final String BASE_PATH = "http://localhost:8080/disciplina";
+	final String BASE_PATH = "http://localhost:8080/api/disciplina";
 
 	@Autowired
 	private DisciplinaRepository repositorio;
@@ -36,13 +34,13 @@ public class DisciplinaResourceTest {
 
 	@Before
 	public void setUp() {
-
+		
 		restTemplate = new RestTemplate();
 		repositorio.deleteAll();
 
-		repositorio.save(new Disciplina("POO", null, null, null));
-		repositorio.save(new Disciplina("TI", null, null, null));
-		repositorio.save(new Disciplina("GQS", null, null, null));
+		repositorio.save(new Disciplina("POO"));
+		repositorio.save(new Disciplina("TI"));
+		repositorio.save(new Disciplina("GQS"));
 	}
 
 	@Test
@@ -50,7 +48,7 @@ public class DisciplinaResourceTest {
 		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
 
 		List<Disciplina> disciplinas = MAPPER.readValue(response,
-				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Escola.class));
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Disciplina.class));
 
 		int tamanhoEsperadoDaLista = 3;
 

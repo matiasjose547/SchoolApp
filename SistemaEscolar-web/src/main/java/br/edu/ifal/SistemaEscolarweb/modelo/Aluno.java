@@ -27,14 +27,14 @@ public class Aluno {
 
 	@Column(name = "cpf")
 	private String cpf;
-
-	@Column(length = 8, nullable = false, name = "data_nascimento")
+	//Colocar o not null de volta
+	@Column(length = 15, name = "data_nascimento")
 	private String dataNascimento;
-
-	@Column(length = 200, nullable = true, name = "nome_pai")
+	//Colocar o not null de volta
+	@Column(length = 200, name = "nome_pai")
 	private String nomePai;
-
-	@Column(length = 200, nullable = true, name = "nome_mae")
+	//Colocar o not null de volta
+	@Column(length = 200, name = "nome_mae")
 	private String nomeMae;
 
 	@ManyToMany

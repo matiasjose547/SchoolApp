@@ -24,7 +24,7 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.AssuntoRepository;
 public class AssuntoResourceTest {
 
 
-	final String BASE_PATH = "http://localhost:8080/escola";
+	final String BASE_PATH = "http://localhost:8080/api/assunto";
 
 	@Autowired
 	private AssuntoRepository repositorio;

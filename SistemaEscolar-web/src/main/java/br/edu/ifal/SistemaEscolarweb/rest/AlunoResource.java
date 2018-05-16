@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,8 +27,17 @@ public class AlunoResource {
 		alunoRepository.save(a);
 		return "Parabéns";
 	}
+	
+	@RequestMapping(value = "salvar", method=RequestMethod.POST)
+	public Aluno salvar(@RequestBody Aluno aluno) {
+		
+		alunoRepository.save(aluno);
+		
+		return aluno;
+		
+	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/{id}/buscar", method = RequestMethod.GET, produces = "application/json")
 	public Aluno buscar(@PathVariable("id") Integer id) {
 		return alunoRepository.getOne(id); 
 	}

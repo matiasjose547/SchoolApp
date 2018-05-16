@@ -12,7 +12,7 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.BoletimRepository;
 
 
 @RestController
-@RequestMapping("/api/assunto")
+@RequestMapping("/api/boletim")
 public class BoletimResource {
 
 	@Autowired

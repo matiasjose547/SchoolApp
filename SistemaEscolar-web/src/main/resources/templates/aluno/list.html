@@ -24,7 +24,6 @@
 				    	<thead>
 					      	<tr>
 					      		<th>#</th>
-						        <th>Códido</th>
 						        <th>Nome</th>
 						        <th>Nascimento</th>
 						        <th>Matricula</th>
@@ -34,7 +33,6 @@
 					    <tbody>
 					    	<tr th:each="a,status : ${alunosList}">
 					    		<td th:text="${status.count}"></td>
-						        <td th:text="${a.id}"></td>
 						        <td th:text="${a.nome}"></td>
 						        <td th:text="${#dates.format(a.dataNascimento, 'dd-MM-yyyy')}"></td>
 						        <td th:text="${a.matricula}"></td>

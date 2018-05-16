@@ -20,6 +20,17 @@ public class Nota {
 	@Column(length = 2, scale = 2, nullable = true, name = "valor")
 	private double valor;
 
+	
+	public Nota(Integer id, double valor) {
+		super();
+		this.id = id;
+		this.valor = valor;
+	}
+
+	public Nota() {
+		super();
+	}
+
 	public Nota(double valor) {
 		this.valor = valor;
 	}

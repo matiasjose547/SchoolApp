@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +18,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.edu.ifal.SistemaEscolarweb.modelo.Aluno;
-import br.edu.ifal.SistemaEscolarweb.modelo.Disciplina;
-import br.edu.ifal.SistemaEscolarweb.modelo.Escola;
 import br.edu.ifal.SistemaEscolarweb.repositorios.AlunoRepository;
 
 @RunWith(SpringRunner.class)
@@ -26,7 +25,7 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.AlunoRepository;
 public class AlunoResourceTest {
 
 
-	final String BASE_PATH = "http://localhost:8080/aluno";
+	final String BASE_PATH = "http://localhost:8080/api/aluno";
 
 	@Autowired
 	private AlunoRepository repositorio;
@@ -41,17 +40,17 @@ public class AlunoResourceTest {
 		restTemplate = new RestTemplate();
 		repositorio.deleteAll();
 
-		repositorio.save(new Aluno("Didil", "1235468646", "1231-25-21"));
-		repositorio.save(new Aluno("Brenda", "1236251446", "1231-25-21"));
-		repositorio.save(new Aluno("MAria", "1235467874", "1231-25-21"));
+		repositorio.save(new Aluno("Didil", "1236", "25-21"));
+		repositorio.save(new Aluno("Brenda", "1446", "25-21"));
+		repositorio.save(new Aluno("MAria", "1874", "25-21"));
 	}
 
 	@Test
-	public void deveFuncionarParaAListagemDeTodasAsEscolas() throws JsonMappingException, IOException {
+	public void deveFuncionarParaAListagemDeTodosOsAlunos() throws JsonMappingException, IOException {
 		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
 
 		List<Aluno> alunos = MAPPER.readValue(response,
-				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Disciplina.class));
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Aluno.class));
 
 		int tamanhoEsperadoDaLista = 3;
 
@@ -59,4 +58,18 @@ public class AlunoResourceTest {
 	}
 
 	
+	@Test
+	public void deveFuncionarParaSalvarUmAluno() throws JsonMappingException, IOException {
+
+		Aluno aluno = new Aluno("JR", "15641654", "2012-12");
+		
+		restTemplate.postForObject(BASE_PATH + "/salvar", aluno, Aluno.class);
+		
+		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
+		
+		List<Aluno> alunos = MAPPER.readValue(response,
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Aluno.class));
+		
+		Assert.assertEquals("JR", alunos.get(3).getNome());
+	}
 }

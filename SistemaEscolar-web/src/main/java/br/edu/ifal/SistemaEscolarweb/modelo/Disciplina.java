@@ -22,7 +22,7 @@ public class Disciplina {
 	@GenericGenerator(name = "inc", strategy = "increment")
 	private Integer id;
 
-	@Column(length = 200, nullable = true)
+	@Column(length = 200, nullable = false)
 	private String nome;
 
 	@ManyToMany
@@ -44,6 +44,15 @@ public class Disciplina {
 		this.cursos = new HashSet<>();
 
 	}
+
+	
+
+	public Disciplina(String nome) {
+		super();
+		this.nome = nome;
+	}
+
+
 
 	public Disciplina(String nome, Set<Professor> professor, Set<Aluno> alunos, Set<Assunto> assunto) {
 		this.professores = new HashSet<>();
