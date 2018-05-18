@@ -1,6 +1,5 @@
 package br.edu.ifal.SistemaEscolarweb.modelo;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -116,6 +115,10 @@ public class Aluno {
 
 	public Integer getMatricula() { // retorna a matricula
 		return matricula;
+	}
+
+	public void setMatricula(Integer matricula) {
+		this.matricula = matricula;
 	}
 
 	public String getDataNascimento() { // retorna a data de nascimento
