@@ -1,62 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<meta charset="UTF-8">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-		
-		<title>Lista de Alunos</title>
-	</head>
-	<body>
-		<div class="container">
-			<div class="row">
-			 
-			 	<div class="col-md-8">
-	    
-				 	<h2 th:text="${message}"></h2>
-				  
-				  	<table class="table" th:unless="${#lists.isEmpty(alunosList)}">
-				    	<thead>
-					      	<tr>
-					      		<th>#</th>
-						        <th>Nome</th>
-						        <th>Nascimento</th>
-						        <th>Matricula</th>
-						         <th>Ação</th>
-					      	</tr>
-				    	</thead>
-					    <tbody>
-					    	<tr th:each="a,status : ${alunosList}">
-					    		<td th:text="${status.count}"></td>
-						        <td th:text="${a.nome}"></td>
-						        <td th:text="${#dates.format(a.dataNascimento, 'dd-MM-yyyy')}"></td>
-						        <td th:text="${a.matricula}"></td>
-						        <td>
-						        	<a href="aluno/form.html" th:href="@{'/aluno/edit-'+${a.id}+'-aluno'}">
-						        		edit
-						        	</a>
-						        	
-						        	<a href="aluno/list.html"   th:href="@{/aluno/delete(alunoId=${a.id})}" >
-						        		delete
-						        	</a>
-						        </td>
-						      	
-					
-					      	</tr>
-					      	
-					      	
-					    </tbody>
-				  	</table>
-			  	</div>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+	integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+	integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+	crossorigin="anonymous"></script>
+
+<title>Lista de Alunos</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-8">
+
+				<h2 th:text="${message}"></h2>
+
+				<table class="table" th:unless="${#lists.isEmpty(alunosList)}">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Data</th>
+							<th>Matricula</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="a,status : ${alunosList}">
+							<td th:text="${status.count}"></td>
+							<td th:text="${a.nome}"></td>
+							<td th:text="${a.dataNascimento}"></td>
+							<td th:text="${a.matricula}"></td>
+							<td><a href="aluno/form.html"
+								th:href="@{'/aluno/edit-'+${a.matricula}+'-aluno'}"> edit </a> 
+								<a href="aluno/list.html"
+								th:href="@{/aluno/delete(alunoId=${a.matricula})}"> delete </a>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
 			</div>
 		</div>
-		 
-		
-		
-	</body>
+	</div>
+
+
+
+</body>
 </html>
