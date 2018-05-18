@@ -21,14 +21,14 @@ public class AlunoResource {
 	@Autowired
 	private	AlunoRepository alunoRepository;
 
-	@RequestMapping(value = "carregar", method = RequestMethod.GET)
+	@RequestMapping(value = "/carregar", method = RequestMethod.GET)
 	public String init() {
 		Aluno a = new Aluno("Maressa", "12345789","16021992");
 		alunoRepository.save(a);
 		return "Parabéns";
 	}
 	
-	@RequestMapping(value = "salvar", method=RequestMethod.POST)
+	@RequestMapping(value = "/salvar", method=RequestMethod.POST)
 	public Aluno salvar(@RequestBody Aluno aluno) {
 		
 		alunoRepository.save(aluno);
