@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.edu.ifal.SistemaEscolarweb.modelo.Aluno;
 import br.edu.ifal.SistemaEscolarweb.modelo.Assunto;
 import br.edu.ifal.SistemaEscolarweb.repositorios.AssuntoRepository;
 
@@ -57,4 +59,18 @@ public class AssuntoResourceTest {
 	}
 
 	
+	@Test
+	public void deveFuncionarParaSalvarUmAssunto() throws JsonMappingException, IOException {
+
+		Assunto assunto = new Assunto("Nis", "Redes");
+		
+		restTemplate.postForObject(BASE_PATH + "/salvar", assunto, Assunto.class);
+		
+		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
+		
+		List<Assunto> assuntos = MAPPER.readValue(response,
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Assunto.class));
+		
+		Assert.assertEquals("Nis", assuntos.get(3).getNome());	
+}
 }
