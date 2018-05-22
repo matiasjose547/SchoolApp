@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,6 +55,21 @@ public class DisciplinaResourceTest {
 
 		assertEquals(tamanhoEsperadoDaLista, disciplinas.size());
 	}
+	@Test
+	public void deveFuncionarParaSalvarUmaDisciplina() throws JsonMappingException, IOException {
 
+		Disciplina disciplina = new Disciplina("POO");
+		
+		restTemplate.postForObject(BASE_PATH + "/salvar", disciplina, Disciplina.class);
+		
+		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
+		
+		List<Disciplina> disciplinas = MAPPER.readValue(response,
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Disciplina.class));
+		
+		Assert.assertEquals("POO", disciplinas.get(3).getNome());
+	}
+	
+	
 	
 }
