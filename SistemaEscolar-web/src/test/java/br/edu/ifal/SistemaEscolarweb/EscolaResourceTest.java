@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.edu.ifal.SistemaEscolarweb.modelo.Aluno;
 import br.edu.ifal.SistemaEscolarweb.modelo.Escola;
 import br.edu.ifal.SistemaEscolarweb.repositorios.EscolaRepository;
 
@@ -53,6 +55,21 @@ public class EscolaResourceTest {
 		int tamanhoEsperadoDaLista = 3;
 
 		assertEquals(tamanhoEsperadoDaLista, escolas.size());
+	}
+	
+	@Test
+	public void deveFuncionarParaSalvarUmAluno() throws JsonMappingException, IOException {
+
+		Escola escola = new Escola("Ifal");
+		
+		restTemplate.postForObject(BASE_PATH + "/salvar", escola, Escola.class);
+		
+		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
+		
+		List<Escola> escolas = MAPPER.readValue(response,
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Escola.class));
+		
+		Assert.assertEquals("Ifal", escolas.get(3).getNome());
 	}
 
 }
