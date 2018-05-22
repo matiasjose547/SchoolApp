@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.edu.ifal.SistemaEscolarweb.modelo.Curso;
-import br.edu.ifal.SistemaEscolarweb.modelo.Escola;
 import br.edu.ifal.SistemaEscolarweb.repositorios.CursoRepository;
 
 @RunWith(SpringRunner.class)
@@ -55,4 +55,21 @@ public class CursoResourceTest {
 
 		assertEquals(tamanhoEsperadoDaLista, cursos.size());
 	}
+	
+	@Test
+	public void deveFuncionarParaSalvarUmCurso() throws JsonMappingException, IOException {
+
+		Curso curso = new Curso(1, "Informatica");
+		
+		restTemplate.postForObject(BASE_PATH + "/salvar",curso , Curso.class);
+		
+		String response = restTemplate.getForObject(BASE_PATH + "/pesquisar/todos", String.class);
+		
+		List<Curso> cursos = MAPPER.readValue(response,
+				MAPPER.getTypeFactory().constructCollectionLikeType(List.class, Curso.class));
+		
+		Assert.assertEquals("Informatica", cursos.get(3).getNome());
+	}
+	
+
 }
