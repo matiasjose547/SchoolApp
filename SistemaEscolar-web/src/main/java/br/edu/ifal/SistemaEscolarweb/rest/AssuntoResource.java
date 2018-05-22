@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,11 +21,17 @@ public class AssuntoResource {
 	@Autowired
 	AssuntoRepository assuntoRepository;
 	
-	@RequestMapping(value = "carregar", method = RequestMethod.GET)
+	@RequestMapping(value = "/carregar", method = RequestMethod.GET)
 	public String init() {
 	    Assunto a = new Assunto("Equação","Aulas de matemática");
 		assuntoRepository.save(a);
 		return "Parabéns";
+	}
+	@RequestMapping(value = "/salvar", method = RequestMethod.POST )
+	public Assunto salvar (@RequestBody Assunto assunto) {
+		assuntoRepository.save(assunto);
+		
+		return assunto;
 	}
 
 	@RequestMapping(value = "/{id}/buscar", method = RequestMethod.GET, produces = "application/json")
