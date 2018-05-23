@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +38,14 @@ public class ProfessorResource {
 		professorRepository.deleteById(id);
 		return "Professor deletado";
 
+	}
+
+	@RequestMapping(value = "/salvar", method = RequestMethod.POST)
+	public Professor salvar(@RequestBody Professor professor) {
+
+		professorRepository.save(professor);
+
+		return professor;
 	}
 
 	@RequestMapping(value = "/pesquisar/todos", method = RequestMethod.GET)
