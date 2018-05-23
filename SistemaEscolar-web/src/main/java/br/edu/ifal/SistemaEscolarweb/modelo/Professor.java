@@ -14,16 +14,16 @@ import javax.persistence.Table;
 public class Professor {
 
 	@Id
-	@Column(name = "numero_cadastro", length = 11, nullable = false)
+	@Column(name = "numero_cadastro", length = 11)
 	private Integer numeroCadastro;
 
-	@Column(name = "nome", length = 200, nullable = false)
+	@Column(name = "nome", length = 200)
 	private String nome;
 
-	@Column(name = "cpf", length = 11, nullable = false)
+	@Column(name = "cpf", length = 31)
 	private String cpf;
 
-	@Column(length = 80, nullable = false, name = "formacao")
+	@Column(length = 80, name = "formacao")
 	private String formacao;
 
 	@ManyToMany
