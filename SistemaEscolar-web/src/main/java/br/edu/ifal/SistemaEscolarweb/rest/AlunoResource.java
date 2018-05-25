@@ -23,7 +23,7 @@ public class AlunoResource {
 
 	@RequestMapping(value = "/carregar", method = RequestMethod.GET)
 	public String init() {
-		Aluno a = new Aluno("Maressa", "12345789","16021992");
+		Aluno a = new Aluno("Maressa", "12345789",null);
 		alunoRepository.save(a);
 		return "Parabéns";
 	}

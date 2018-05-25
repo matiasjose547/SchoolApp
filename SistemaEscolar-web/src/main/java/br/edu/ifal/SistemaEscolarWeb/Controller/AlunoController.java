@@ -33,9 +33,7 @@ public class AlunoController {
 	public String listAluno(ModelMap model) {
 
 		List<Aluno> alunos = alunoRepository.findAll();
-
 		model.addAttribute("alunosList", alunos);
-
 		model.addAttribute("message", "Lista de alunos");
 
 		return "aluno/list";
@@ -96,7 +94,7 @@ public class AlunoController {
 	}
 
 	@RequestMapping(value = { "/aluno-disciplinas" }, method = RequestMethod.GET)
-	public String alunoDisciplinas(@RequestParam("alunoId") Integer id, ModelMap model) {
+	public String alunoDisciplinas(@RequestParam(name = "alunoId", defaultValue = "0") Integer id, ModelMap model) {
 		Aluno aluno = alunoRepository.getOne(id);
 
 		List<Disciplina> disciplinasAll = disciplinaRepository.findAll();
@@ -107,7 +105,5 @@ public class AlunoController {
 
 		return "aluno/aluno-disciplinas";
 	}
-
-	
 
 }
