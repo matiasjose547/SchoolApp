@@ -1,5 +1,6 @@
 package br.edu.ifal.SistemaEscolarweb.modelo;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,13 +29,14 @@ public class Aluno {
 
 	@Column(name = "cpf")
 	private String cpf;
-	//Colocar o not null de volta
-	@Column(length = 15, name = "data_nascimento")
-	private String dataNascimento;
-	//Colocar o not null de volta
+
+	@Column(name = "data_nascimento")
+	@Temporal(TemporalType.DATE)
+	private Date dataNascimento;
+
 	@Column(length = 200, name = "nome_pai")
 	private String nomePai;
-	//Colocar o not null de volta
+
 	@Column(length = 200, name = "nome_mae")
 	private String nomeMae;
 
@@ -44,17 +48,16 @@ public class Aluno {
 
 	@OneToOne
 	private Boletim boletim;
-	
+
 	public Aluno() {
-		
+
 	}
 
-	public Aluno(String nome, String cpf, String dataDeNascimento) {
+	public Aluno(String nome, String cpf, Date dataDeNascimento) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.dataNascimento = dataDeNascimento;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -80,7 +83,7 @@ public class Aluno {
 			return false;
 		return true;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -121,11 +124,11 @@ public class Aluno {
 		this.matricula = matricula;
 	}
 
-	public String getDataNascimento() { // retorna a data de nascimento
+	public Date getDataNascimento() { // retorna a data de nascimento
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) { // altera a data de nascimento
+	public void setDataNascimento(Date dataNascimento) { // altera a data de nascimento
 		if (dataNascimento != null) {
 			this.dataNascimento = dataNascimento;
 		}
