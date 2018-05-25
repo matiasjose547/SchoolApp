@@ -32,6 +32,16 @@ public class DisciplinaController {
 
 		return "disciplina/list";
 	}
+	
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String salvar(ModelMap model) {
+		
+		Disciplina disciplina = new Disciplina();
+		model.addAttribute("disciplina", disciplina);
+		model.addAttribute("edit", false);
+		
+		return "disciplina/form";
+	}
 
 	
 	
