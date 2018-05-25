@@ -66,28 +66,25 @@
 						<tr>
 							<th>#</th>
 							<th>Nome</th>
-							<th>Data</th>
-							<th>Matricula</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="a,status : ${alunosList}">
+						<tr th:each="a,status : ${disciplinaList}">
 							<td th:text="${status.count}"></td>
 							<td th:text="${a.nome}"></td>
-							<td th:text="${a.dataNascimento}"></td>
-							<td th:text="${a.matricula}"></td>
+						
 							<td>
 							<button class="btn btn-primary">
-								<a href="aluno/form.html"
-								th:href="@{'/aluno/edit-'+${a.matricula}+'-aluno'}"> edit </a> 
+								<a href="disciplina/form.html"
+								th:href="@{'/disciplina/edit-'+${a.id}+'-disciplina'}"> edit </a> 
 							</button>
 							<button class="btn btn-danger">
-								<a href="aluno/list.html"
-								th:href="@{/aluno/delete(alunoId=${a.matricula})}"> delete </a>
+								<a href="disciplina/list.html"
+								th:href="@{/disciplina/delete(disciplinaId=${a.id})}"> delete </a>
 							</button>
 							</td>
-						</tr///>
+						</tr>
 
 					</tbody>
 				</table>
