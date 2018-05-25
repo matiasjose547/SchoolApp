@@ -26,6 +26,35 @@
 </head>
 <body>
 	<div class="container">
+	
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Sistema Escolar</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+  
+    <!-- Deixar comentando até inserir novos dados 
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 2</a>
+    </li> -->
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Dropdown link
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Link 1</a>
+        <a class="dropdown-item" href="#">Link 2</a>
+        <a class="dropdown-item" href="#">Link 3</a>
+      </div>
+    </li>
+  </ul>
+</nav>
 		<div class="row">
 
 			<div class="col-md-8">
@@ -48,12 +77,17 @@
 							<td th:text="${a.nome}"></td>
 							<td th:text="${a.dataNascimento}"></td>
 							<td th:text="${a.matricula}"></td>
-							<td><a href="aluno/form.html"
+							<td>
+							<button class="btn btn-primary">
+								<a href="aluno/form.html"
 								th:href="@{'/aluno/edit-'+${a.matricula}+'-aluno'}"> edit </a> 
+							</button>
+							<button class="btn btn-danger">
 								<a href="aluno/list.html"
 								th:href="@{/aluno/delete(alunoId=${a.matricula})}"> delete </a>
+							</button>
 							</td>
-						</tr>
+						</tr///>
 
 					</tbody>
 				</table>

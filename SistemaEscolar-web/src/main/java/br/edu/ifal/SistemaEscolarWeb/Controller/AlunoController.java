@@ -108,37 +108,6 @@ public class AlunoController {
 		return "aluno/aluno-disciplinas";
 	}
 
-	/*
-	 * @RequestMapping(value="/addDisciplina") public String
-	 * addDisciplina(@RequestParam("disciplinaId") Integer disciplinaId,
-	 * 
-	 * @RequestParam("alunoId") Integer alunoId) {
-	 * 
-	 * Aluno aluno = alunoRepository.getOne(alunoId); Disciplina disciplina =
-	 * disciplinaRepository.getOne(disciplinaId);
-	 * 
-	 * aluno.addDisciplina(disciplina);
-	 * 
-	 * alunoRepository.saveAndFlush(aluno);
-	 * disciplinaRepository.saveAndFlush(disciplina);
-	 * 
-	 * return "redirect:/aluno/aluno-disciplinas?alunoId="+aluno.getId(); }
-	 * 
-	 * /*@RequestMapping(value="/removeDisciplina") public String
-	 * removeDisciplina(@RequestParam("disciplinaId") Integer disciplinaId,
-	 * 
-	 * @RequestParam("alunoId") Integer alunoId) {
-	 * 
-	 * Aluno aluno = alunoRepository.getOne(alunoId);
-	 * 
-	 * 
-	 * Boolean removed = aluno.getDisciplinas().removeIf(d ->
-	 * d.getId().equals(disciplinaId));
-	 * 
-	 * 
-	 * alunoRepository.saveAndFlush(aluno);
-	 * 
-	 * return "redirect:/aluno/aluno-disciplinas?alunoId="+aluno.getId(); }
-	 */
+	
 
 }
