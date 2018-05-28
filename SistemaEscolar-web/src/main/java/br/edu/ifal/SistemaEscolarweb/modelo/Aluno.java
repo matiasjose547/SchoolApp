@@ -1,6 +1,5 @@
 package br.edu.ifal.SistemaEscolarweb.modelo;
 
-import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -31,8 +30,7 @@ public class Aluno {
 	private String cpf;
 
 	@Column(name = "data_nascimento")
-	@Temporal(TemporalType.DATE)
-	private Date dataNascimento;
+	private String dataNascimento;
 
 	@Column(length = 200, name = "nome_pai")
 	private String nomePai;
@@ -53,7 +51,7 @@ public class Aluno {
 
 	}
 
-	public Aluno(String nome, String cpf, Date dataDeNascimento) {
+	public Aluno(String nome, String cpf, String dataDeNascimento) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.dataNascimento = dataDeNascimento;
@@ -124,11 +122,11 @@ public class Aluno {
 		this.matricula = matricula;
 	}
 
-	public Date getDataNascimento() { // retorna a data de nascimento
+	public String getDataNascimento() { // retorna a data de nascimento
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) { // altera a data de nascimento
+	public void setDataNascimento(String dataNascimento) { // altera a data de nascimento
 		if (dataNascimento != null) {
 			this.dataNascimento = dataNascimento;
 		}
