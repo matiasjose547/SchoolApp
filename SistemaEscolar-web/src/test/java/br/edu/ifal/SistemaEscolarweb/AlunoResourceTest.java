@@ -3,6 +3,7 @@ package br.edu.ifal.SistemaEscolarweb;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -36,13 +37,13 @@ public class AlunoResourceTest {
 
 	@Before
 	public void setUp() {
-
+		Date date = new Date();
 		restTemplate = new RestTemplate();
 		repositorio.deleteAll();
 
-		repositorio.save(new Aluno("Didil", "1236", "25-21"));
-		repositorio.save(new Aluno("Brenda", "1446", "25-21"));
-		repositorio.save(new Aluno("MAria", "1874", "25-21"));
+		repositorio.save(new Aluno("Didil", "1236", date));
+		repositorio.save(new Aluno("Brenda", "1446", date));
+		repositorio.save(new Aluno("MAria", "1874", date));
 	}
 
 	@Test
@@ -60,8 +61,8 @@ public class AlunoResourceTest {
 	
 	@Test
 	public void deveFuncionarParaSalvarUmAluno() throws JsonMappingException, IOException {
-
-		Aluno aluno = new Aluno("JR", "15641654", "2012-12");
+		Date date = new Date();
+		Aluno aluno = new Aluno("JR", "15641654", date);
 		
 		restTemplate.postForObject(BASE_PATH + "/salvar", aluno, Aluno.class);
 		
