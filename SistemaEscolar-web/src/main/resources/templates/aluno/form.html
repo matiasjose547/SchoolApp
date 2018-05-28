@@ -29,41 +29,35 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<form action="#" th:action="@{/aluno/save}" th:object="${aluno}"
-				method="POST">
+			<form th:action="@{/aluno/save}" th:object="${aluno}" method="POST">
 
-				<input class="form-control" type="hidden" th:field="*{matricula}" /> <!-- quando salvar enviar atributo nulo / objetivo: nao gerar "error" -->
+				<input class="form-control" type="hidden" th:field="*{matricula}" />
+				<!-- quando salvar enviar atributo nulo / objetivo: nao gerar "error" -->
 
 				<div class="form-group">
 					<label th:text="Nome"></label> <input class="form-control"
-						type="text" th:field="*{nome}" required />
+						type="text" th:field="*{nome}" placeholder="Digite seu nome"
+						required />
 				</div>
 				<div class="form-group">
 					<label th:text="Cpf"></label> <input class="form-control"
-						type="text" th:field="*{cpf}" required />
+						type="text" th:field="*{cpf}" placeholder="Digite seu cpf"
+						required />
 				</div>
 				<div class="form-group">
-					<label th:text="Nascimento"></label> 
-					<input class="form-control" type="date" th:field="*{dataNascimento}" required />
+					<label th:text="Nascimento"></label> <input class="form-control"
+						type="date" th:field="*{dataNascimento}" required />
 				</div>
 				<div class="form-group">
-					<label th:text="'Nome do Pai'"></label> 
-					<input class="form-control" type="text" th:field="*{nomePai}" required />
+					<label th:text="'Nome do Pai'"></label> <input class="form-control"
+						type="text" th:field="*{nomePai}"
+						placeholder="Digite o nome do seu pai" required />
 				</div>
 				<div class="form-group">
-					<label th:text="'Nome do Mae'"></label>
-					<input class="form-control" type="text" th:field="*{nomeMae}" required />
+					<label th:text="'Nome do Mae'"></label> <input class="form-control"
+						type="text" th:field="*{nomeMae}"
+						placeholder="Digite o nome do seu mae" required />
 				</div>
-				
-				<div class="form-check">
-					<ul th:each="bolsa: ${tiposAlunosAll}" class="list-unstyled">
-						<li><input type="radio" th:field="*{tipoDeAluno}"
-							th:value="${bolsa}" class="form-check-input" /> <label
-							th:text="${bolsa.nome}" class="form-check-label"></label></li>
-
-					</ul>
-				</div>
-
 				<input type="submit" value="Enviar" class="btn btn-primary" />
 
 			</form>
