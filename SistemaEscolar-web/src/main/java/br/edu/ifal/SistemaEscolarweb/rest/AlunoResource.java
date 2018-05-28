@@ -1,6 +1,7 @@
 package br.edu.ifal.SistemaEscolarweb.rest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,27 +20,28 @@ import br.edu.ifal.SistemaEscolarweb.repositorios.AlunoRepository;
 public class AlunoResource {
 
 	@Autowired
-	private	AlunoRepository alunoRepository;
+	private AlunoRepository alunoRepository;
 
 	@RequestMapping(value = "/carregar", method = RequestMethod.GET)
 	public String init() {
-		Aluno a = new Aluno("Maressa", "12345789",null);
+
+		Aluno a = new Aluno("Maressa", "12345789", "date");
 		alunoRepository.save(a);
 		return "Parabéns";
 	}
-	
-	@RequestMapping(value = "/salvar", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/salvar")
 	public Aluno salvar(@RequestBody Aluno aluno) {
-		
+
 		alunoRepository.save(aluno);
-		
+
 		return aluno;
-		
+
 	}
 
 	@RequestMapping(value = "/{id}/buscar", method = RequestMethod.GET, produces = "application/json")
 	public Aluno buscar(@PathVariable("id") Integer id) {
-		return alunoRepository.getOne(id); 
+		return alunoRepository.getOne(id);
 	}
 
 	@RequestMapping(value = "/{id}/deletar", method = RequestMethod.GET, produces = "application/json")
