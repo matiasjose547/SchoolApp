@@ -22,7 +22,7 @@
 	integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
 	crossorigin="anonymous"></script>
 
-<title>Lista de Alunos</title>
+<title>Lista de Professores</title>
 </head>
 <body>
 	<div class="container">
@@ -37,10 +37,10 @@
     <!-- Deixar comentando até inserir novos dados 
     <li class="nav-item">
       <a class="nav-link" href="#">Link 1</a>
-    </li>
+    </li>-->
     <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li> -->
+      <a class="nav-link" href="http://localhost:8080/professor/new">Cadastrar Professor</a>
+    </li> 
 
     <!-- Dropdown -->
     <li class="nav-item dropdown">
@@ -61,33 +61,34 @@
 
 				<h2 th:text="${message}"></h2>
 
-				<table class="table" th:unless="${#lists.isEmpty(alunosList)}">
+				<table class="table" th:unless="${#lists.isEmpty(professorList)}">
 					<thead>
 						<tr>
 							<th>#</th>
 							<th>Nome</th>
-							<th>Data</th>
-							<th>Matricula</th>
-							<th></th>
+							<th>CPF</th>
+							<th>Formação</th>
+							<th>Número de cadastro</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="a,status : ${alunosList}">
+						<tr th:each="a,status : ${professorList}">
 							<td th:text="${status.count}"></td>
 							<td th:text="${a.nome}"></td>
-							<td th:text="${a.dataNascimento}"></td>
-							<td th:text="${a.matricula}"></td>
+							<td th:text="${a.cpf}"></td>
+							<td th:text="${a.formacao}"></td>
+                            <td th:text="${a.numeroCadastro}"></td>
 							<td>
 							<button class="btn btn-primary">
-								<a href="aluno/form.html"
-								th:href="@{'/aluno/edit-'+${a.matricula}+'-aluno'}"> edit </a> 
+								<a href="professor/form.html"
+								th:href="@{'/professor/edit-'+${a.numeroCadastro}+'-professor'}"> edit </a> 
 							</button>
 							<button class="btn btn-danger">
-								<a href="aluno/list.html"
-								th:href="@{/aluno/delete(alunoId=${a.matricula})}"> delete </a>
+								<a href="professor/list.html"
+								th:href="@{/professor/delete(professorId=${a.numeroCadastro})}"> delete </a>
 							</button>
 							</td>
-						</tr///>
+						</tr>
 
 					</tbody>
 				</table>
