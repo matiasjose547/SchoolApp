@@ -55,7 +55,7 @@ public class AlunoController {
 		System.out.println(aluno);
 
 		if (result.hasErrors()) {
-			return "aluno/form";
+			return "aluno/list";
 		}
 
 		alunoRepository.saveAndFlush(aluno);

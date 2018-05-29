@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,13 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.edu.ifal.SistemaEscolarweb.modelo.Aluno;
 import br.edu.ifal.SistemaEscolarweb.modelo.Disciplina;
-import br.edu.ifal.SistemaEscolarweb.modelo.Professor;
+import br.edu.ifal.SistemaEscolarweb.repositorios.AlunoRepository;
 import br.edu.ifal.SistemaEscolarweb.repositorios.DisciplinaRepository;
 
 @Controller
 @RequestMapping("/disciplina")
 public class DisciplinaController {
 
+	@Autowired
+	AlunoRepository alunoRepository;
+	
 	@Autowired
 	DisciplinaRepository disciplinaRepository;
 
@@ -53,7 +55,7 @@ public class DisciplinaController {
 	public String saveDisciplina(@Valid @ModelAttribute Disciplina disciplina, BindingResult result, ModelMap model) {
 
 		System.out.println(disciplina);
-
+ 
 		if (result.hasErrors()) {
 			return "disciplina/form";
 		}
@@ -95,4 +97,5 @@ public class DisciplinaController {
 		return "redirect:/disciplina/list";
 	}
 
+	
 }
