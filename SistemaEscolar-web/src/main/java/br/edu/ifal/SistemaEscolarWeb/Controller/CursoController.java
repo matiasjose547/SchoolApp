@@ -38,7 +38,7 @@ public class CursoController {
 	public String newCurso(ModelMap model) {
 		
 		Curso curso = new Curso();
-		model.addAttribute("curso", "curso");
+		model.addAttribute("curso", curso);
 		model.addAttribute("edit", false);
 		
 		return "curso/form";
