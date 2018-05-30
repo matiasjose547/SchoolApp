@@ -34,6 +34,7 @@ public class CursoController {
 	return "curso/list"; 
 	}
 	
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String newCurso(ModelMap model) {
 		
 		Curso curso = new Curso();
