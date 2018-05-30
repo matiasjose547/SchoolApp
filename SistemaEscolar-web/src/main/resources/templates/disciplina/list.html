@@ -27,52 +27,40 @@
 <body>
 	<div class="container">
 	
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand -->
-  <a class="navbar-brand" href="#">Sistema Escolar</a>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<a class="navbar-brand" href="#">Sistema Escolar</a>
 
-  <!-- Links -->
-  <ul class="navbar-nav">
-  
-    <!-- Deixar comentando até inserir novos dados 
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 1</a>
-    </li> -->
-    <!-- Dropdown -->
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Cadastrar
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="http://localhost:8080/aluno/new">Aluno</a>
-        <a class="dropdown-item" href="http://localhost:8080/professor/new">Professor</a>
-        <a class="dropdown-item" href="http://localhost:8080/disciplina/new">Disciplina</a>
-      </div>
-    </li>
-      
-      <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Listas
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="http://localhost:8080/aluno/list">Aluno</a>
-        <a class="dropdown-item" href="http://localhost:8080/professor/list">Professor</a>
-        <a class="dropdown-item" href="http://localhost:8080/disciplina/list">Disciplina</a>
-      </div>
-    </li>
-  </ul>
-</nav>
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Cadastrar </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="http://localhost:8080/aluno/new">Aluno</a>
+						<a class="dropdown-item" href="http://localhost:8080/professor/new">Professor</a> 
+						<a class="dropdown-item" href="http://localhost:8080/escola/new">Escola</a> 
+						<a class="dropdown-item" href="http://localhost:8080/disciplina/new">Disciplina</a>
+					</div>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Listas </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="http://localhost:8080/aluno/list">Aluno</a>
+						<a class="dropdown-item" href="http://localhost:8080/professor/list">Professor</a> 
+						<a class="dropdown-item" href="http://localhost:8080/escola/list">Escola</a> 
+						<a class="dropdown-item" href="http://localhost:8080/disciplina/list">Disciplina</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
 		<div class="row">
-
 			<div class="col-md-8">
-
 				<h2 th:text="${message}"></h2>
-
 				<table class="table" th:unless="${#lists.isEmpty(disciplinaList)}">
 					<thead>
 						<tr>
 							<th>#</th>
 							<th>Nome</th>
+							<th></th>
 							<th></th>
 						</tr>
 					</thead>
@@ -80,19 +68,17 @@
 						<tr th:each="a,status : ${disciplinaList}">
 							<td th:text="${status.count}"></td>
 							<td th:text="${a.nome}"></td>
-						
 							<td>
-							<button class="btn btn-primary">
-								<a href="disciplina/form.html"
-								th:href="@{'/disciplina/edit-'+${a.id}+'-disciplina'}"> edit </a> 
-							</button>
-							<button class="btn btn-danger">
-								<a href="disciplina/list.html"
-								th:href="@{/disciplina/delete(disciplinaId=${a.id})}"> delete </a>
-							</button>
+								<a href="disciplina/form.html" th:href="@{'/disciplina/edit-'+${a.id}+'-disciplina'}">
+									<button class="btn btn-primary"> editar </button>
+								</a> 
+							</td>
+							<td>
+								<a href="disciplina/list.html" th:href="@{/disciplina/delete(disciplinaId=${a.id})}">
+									<button class="btn btn-danger"> deletar </button>
+								</a>
 							</td>
 						</tr>
-
 					</tbody>
 				</table>
 			</div>
