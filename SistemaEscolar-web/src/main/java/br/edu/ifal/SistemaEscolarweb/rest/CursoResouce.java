@@ -4,41 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ifal.SistemaEscolarweb.modelo.Aluno;
 import br.edu.ifal.SistemaEscolarweb.modelo.Curso;
 import br.edu.ifal.SistemaEscolarweb.repositorios.CursoRepository;
 
-@RestController
-@RequestMapping("/api/curso")
+@Controller
+@RequestMapping("/curso")
 public class CursoResouce {
 
 	@Autowired
 	CursoRepository cursoRepository;
 
-	@RequestMapping(value = "carregar", method = RequestMethod.GET)
+	@GetMapping(value = "carregar")
 	public String init() {
 		Curso c = new Curso(5, "IFREE-RL");
 		cursoRepository.save(c);
 		return "Salvo com sucesso";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+	@GetMapping("/{id}")
 	public Curso buscar(@PathVariable("id") Integer id) {
 		return cursoRepository.getOne(id);
 	}
 
-	@RequestMapping(value = "/{id}/deletar", method = RequestMethod.GET, produces = "application/json")
+	@DeleteMapping("/{id}/deletar")
 	public String deletar(@PathVariable("id") Integer id) {
 		cursoRepository.deleteById(id);
-		return "Escola deletada";
-
+		return "Curso deletado";
 	}
 
 	@RequestMapping(value = "/pesquisar/todos", method = RequestMethod.GET)
