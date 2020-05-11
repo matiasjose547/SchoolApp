@@ -10,26 +10,26 @@
 <meta name="description" content="Prova de conceito" />
 <meta name="author" content="Equipe IFAL - Rio Largo" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
-
+<script>
+	const APP = '/'
+</script>
 </head>
 <body>
 
 	<input type="checkbox" id="check" />
-	<label id="icone" for="check">
-		<img alt="icone" th:src="@{/assets/icone.png}">
+	<label id="icone" for="check"> <img alt="icone"
+		th:src="@{/assets/icone.png}">
 	</label>
-	
+
 	<div class="barra">
 		<nav class="barra">
-			<a th:href="@{/aluno/list}"><div class="link">Aluno</div></a> 
-			<a th:href="@{/professor/list}"><div class="link">Professor</div></a>
-			<a th:href="@{/disciplina/list}"><div class="link">Disciplina</div></a>
-			<a th:href="@{/curso/list}"><div class="link">Curso</div></a>
-			<a th:href="@{/escola/list}"><div class="link">Escola</div></a>
+			<a th:href="@{/aluno/list}"><div class="link">Aluno</div></a> <a
+				th:href="@{/professor/list}"><div class="link">Professor</div></a> <a
+				th:href="@{/disciplina/list}"><div class="link">Disciplina</div></a>
+			<a th:href="@{/curso/list}"><div class="link">Curso</div></a> <a
+				th:href="@{/escola/list}"><div class="link">Escola</div></a>
 		</nav>
 	</div>
-	<div>
-	
-	</div>
+	<div></div>
 </body>
 </html>
