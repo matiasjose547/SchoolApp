@@ -67,6 +67,7 @@ public class CursoController {
 	@RequestMapping(value = { "/edit-{id}-curso" }, method = RequestMethod.GET)
 	public String editCurso(@PathVariable("id") Integer codigo, ModelMap model) {
 		Curso curso = cursoRepository.getOne(codigo);
+		System.out.println(model.toString());
 		model.addAttribute("curso", curso);
 		model.addAttribute("edit", true);
 
