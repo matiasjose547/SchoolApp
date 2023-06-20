@@ -1,8 +1,12 @@
 package br.edu.ifal.SistemaEscolar.rest;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import br.edu.ifal.SistemaEscolar.model.Boletim;
+import br.edu.ifal.SistemaEscolar.model.Disciplina;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +28,12 @@ public class AlunoResource {
 	@RequestMapping(value = "/carregar", method = RequestMethod.GET)
 	public String init() {
 
-		Aluno a = new Aluno("Maressa", "12345789", "date");
+		Aluno a = new Aluno("252525",
+				"Thamiris",
+				"55544477788",
+				 LocalDate.now(),
+				"Cicero",
+				"Selma");
 		alunoRepository.save(a);
 		return "Parabéns";
 	}

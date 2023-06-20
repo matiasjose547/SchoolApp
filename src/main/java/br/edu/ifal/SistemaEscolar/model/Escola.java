@@ -10,15 +10,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "escola")
-public class Escola {
-	@Id
-	@GeneratedValue(generator = "inc")
-	@GenericGenerator(name = "inc", strategy = "increment")
-	private Integer codigo;
+public class Escola extends AbstractEntity{
 
 	@Column(length = 200, nullable = false, name = "nome")
 	private String nome;
@@ -29,61 +31,17 @@ public class Escola {
 	@OneToMany
 	private Set<Professor> professores;
 
-	public Escola() {
-		professores = new HashSet<>();
-		cursos = new HashSet<>();
-	}
-
-	public Escola(Integer codigo, String nome, Set<Curso> cursos, Set<Professor> professores) {
-		professores = new HashSet<>();
-		cursos = new HashSet<>();
-		this.nome = nome;
-		this.cursos = cursos;
-		this.professores = professores;
-	}
-
 	public Escola(String nome) {
 		this.nome = nome;
 	}
 
-	public Integer getCodigo() {
-		return codigo;
+	@Override
+	public String toString() {
+		return "Escola{" +
+				"nome='" + nome + '\'' +
+				", cursos=" + cursos +
+				", professores=" + professores +
+				", id=" + id +
+				'}';
 	}
-
-	public void setCodigo(Integer codigo) {
-		if (codigo != null) {
-			this.codigo = codigo;
-		}
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		if (nome != null) {
-			this.nome = nome;
-		}
-	}
-
-	public Set<Curso> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(Set<Curso> cursos) {
-		if (cursos != null) {
-			this.cursos = cursos;
-		}
-	}
-
-	public Set<Professor> getProfessores() {
-		return professores;
-	}
-
-	public void setProfessores(Set<Professor> professores) {
-		if (professores != null) {
-			this.professores = professores;
-		}
-	}
-
 }

@@ -1,40 +1,34 @@
 package br.edu.ifal.SistemaEscolar.model;
 
+import java.time.LocalDate;
 import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-import jakarta.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "aluno")
-public class Aluno {
+public class Aluno extends AbstractEntity {
 
-	@Id
-	@GeneratedValue(generator = "inc")
-	@GenericGenerator(name = "inc", strategy = "increment")
-	private Integer matricula;
-
-	@Column(name = "nome")
+	private String matricula;
+	@Column(length = 100)
 	private String nome;
 
-	@Column(name = "cpf")
 	private String cpf;
 
 	@Column(name = "data_nascimento")
-	private String dataNascimento;
+	@Temporal(TemporalType.DATE)
+	private LocalDate dataNascimento;
 
-	@Column(length = 200, name = "nome_pai")
+	@Column(length = 100, name = "nome_pai")
 	private String nomePai;
 
-	@Column(length = 200, name = "nome_mae")
+	@Column(length = 100, name = "nome_mae")
 	private String nomeMae;
 
 	@ManyToMany
@@ -46,129 +40,28 @@ public class Aluno {
 	@OneToOne
 	private Boletim boletim;
 
-	public Aluno() {
-
-	}
-
-	public Aluno(String nome, String cpf, String dataDeNascimento) {
-		this.nome = nome;
-		this.cpf = cpf;
-		this.dataNascimento = dataDeNascimento;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aluno other = (Aluno) obj;
-		if (disciplinas == null) {
-			if (other.disciplinas != null)
-				return false;
-		} else if (!disciplinas.equals(other.disciplinas))
-			return false;
-		return true;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public Set<Curso> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(Set<Curso> cursos) {
-		this.cursos = cursos;
-	}
-
-	public Boletim getBoletim() {
-		return boletim;
-	}
-
-	public void setBoletim(Boletim boletim) {
-		this.boletim = boletim;
-	}
-
-	public Integer getMatricula() { // retorna a matricula
-		return matricula;
-	}
-
-	public void setMatricula(Integer matricula) {
+	public Aluno(String matricula, String nome, String cpf, LocalDate dataNascimento, String nomePai, String nomeMae) {
 		this.matricula = matricula;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.nomePai = nomePai;
+		this.nomeMae = nomeMae;
 	}
 
-	public String getDataNascimento() { // retorna a data de nascimento
-		return dataNascimento;
+	@Override
+	public String toString() {
+		return "Aluno{" +
+				"matricula='" + matricula + '\'' +
+				", nome='" + nome + '\'' +
+				", cpf='" + cpf + '\'' +
+				", dataNascimento='" + dataNascimento + '\'' +
+				", nomePai='" + nomePai + '\'' +
+				", nomeMae='" + nomeMae + '\'' +
+				", cursos=" + cursos +
+				", disciplinas=" + disciplinas +
+				", boletim=" + boletim +
+				", id=" + id +
+				'}';
 	}
-
-	public void setDataNascimento(String dataNascimento) { // altera a data de nascimento
-		if (dataNascimento != null) {
-			this.dataNascimento = dataNascimento;
-		}
-	}
-
-	public String getNomePai() { // retorna o nome do pai
-		return nomePai;
-	}
-
-	public void setNomePai(String nomePai) { // altera o nome do pai
-		if (nomePai != null) {
-			this.nomePai = nomePai;
-		}
-	}
-
-	public String getNomeMae() { // retorna o nome do mae
-		return nomeMae;
-	}
-
-	public void setNomeMae(String nomeMae) { // altera o nome do mae
-		if (nomeMae != null) {
-			this.nomeMae = nomeMae;
-		}
-	}
-
-	public Set<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(Set<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
-
-	public void adicionarDisciplina(Disciplina d) {
-		if (d != null) {
-			this.disciplinas.add(d);
-		}
-	}
-
-	public void removerDisciplina(Disciplina d) {
-		if (d != null) {
-			this.disciplinas.remove(d);
-		}
-	}
-
 }

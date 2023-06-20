@@ -2,53 +2,26 @@ package br.edu.ifal.SistemaEscolar.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import org.hibernate.annotations.GenericGenerator;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "nota")
-public class Nota {
-
-	@Id
-	@GeneratedValue(generator = "inc")
-	@GenericGenerator(name = "inc", strategy = "increment")
-	private Integer id;
+public class Nota extends AbstractEntity{
 
 	@Column(length = 2, scale = 2, nullable = true, name = "valor")
 	private double valor;
 
-	
-	public Nota(Integer id, double valor) {
-		super();
-		this.id = id;
-		this.valor = valor;
+	@Override
+	public String toString() {
+		return "Nota{" +
+				"valor=" + valor +
+				", id=" + id +
+				'}';
 	}
-
-	public Nota() {
-		super();
-	}
-
-	public Nota(double valor) {
-		this.valor = valor;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-
 }

@@ -22,7 +22,7 @@ public class DisciplinaResource {
 
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {
-	    Disciplina d = new Disciplina("poo", null, null,null);
+	    Disciplina d = new Disciplina("poo");
 		disciplinaRepository.save(d);
 		return "Parabéns";
 	}

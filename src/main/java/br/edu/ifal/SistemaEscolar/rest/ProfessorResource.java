@@ -23,7 +23,7 @@ public class ProfessorResource {
 
 	@RequestMapping(value = "carregar", method = RequestMethod.GET)
 	public String init() {
-		Professor p = new Professor("Edvaldo", "123456789", 4, "ING");
+		Professor p = new Professor("252554","Edvaldo", "123456789","ING");
 		professorRepository.save(p);
 		return "Parabéns";
 	}

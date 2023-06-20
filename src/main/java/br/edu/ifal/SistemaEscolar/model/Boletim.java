@@ -7,56 +7,29 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "boletim")
-public class Boletim {
-	@Id
-	@Column(name = "id", nullable = false)
-	private Integer id;
-	
+public class Boletim extends AbstractEntity {
+
 	@OneToMany
 	private Set<Disciplina> disciplinas;
 	
 	@OneToMany
 	private Set<Nota> notas;
 
-	public Boletim() {
-		super();
+	@Override
+	public String toString() {
+		return "Boletim{" +
+				"disciplinas=" + disciplinas +
+				", notas=" + notas +
+				", id=" + id +
+				'}';
 	}
-
-	public Boletim(Integer id, Set<Disciplina> disciplinas, Set<Nota> notas) {
-		super();
-		this.id = id;
-		this.disciplinas = disciplinas;
-		this.notas = notas;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Set<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(Set<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
-
-	public Set<Nota> getNotas() {
-		return notas;
-	}
-
-	public void setNotas(Set<Nota> notas) {
-		this.notas = notas;
-	}
-	
-
-	
-	
 }

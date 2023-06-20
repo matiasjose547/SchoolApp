@@ -22,7 +22,7 @@ public class CursoResouce {
 
 	@GetMapping(value = "/carregar")
 	public String init() {
-		Curso c = new Curso(5, "IFREE-RL");
+		Curso c = new Curso();
 		cursoRepository.save(c);
 		return "Salvo com sucesso";
 	}
